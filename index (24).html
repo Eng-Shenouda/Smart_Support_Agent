@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova Mart | نوفا مارت</title>
+<meta name="description" content="Nova Mart – electronics and home essentials with smart 24/7 customer support.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css">
+<style>
+  :root {
+    --navy: #0f2d4a;
+    --navy-2: #163d63;
+    --orange: #e8790c;
+    --orange-2: #cf6a07;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #17283a;
+    --muted: #5b6b7c;
+    --line: #e2e8ef;
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(15,45,74,.08);
+
+    --chat--color-primary: #e8790c;
+    --chat--color-primary-shade-50: #d16c0a;
+    --chat--color-primary-shade-100: #b95f09;
+    --chat--color-secondary: #0f2d4a;
+    --chat--color-secondary-shade-50: #0b2238;
+    --chat--header--background: #0f2d4a;
+    --chat--header--color: #ffffff;
+    --chat--window--width: 400px;
+    --chat--window--height: 600px;
+    --chat--toggle--background: #e8790c;
+    --chat--toggle--hover--background: #d16c0a;
+    --chat--toggle--active--background: #b95f09;
+    --chat--toggle--size: 64px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: "Cairo", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; font: 700 .98rem "Cairo", sans-serif; border: 0; cursor: pointer; transition: transform .15s, background .15s; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--orange); color: #fff; }
+  .btn-primary:hover { background: var(--orange-2); }
+  .btn-ghost { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.35); }
+  .btn-outline { background: #fff; color: var(--navy); border: 1px solid var(--line); }
+
+  .announce { background: var(--orange); color: #fff; text-align: center; font-size: .9rem; font-weight: 600; padding: 7px 12px; }
+  .nav { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50; }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.3rem; color: var(--navy); }
+  .logo i { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--navy), var(--navy-2)); display: grid; place-items: center; color: #fff; font-style: normal; font-size: 1.1rem; }
+  .logo b { color: var(--orange); }
+  .links { display: flex; gap: 26px; font-weight: 600; color: var(--muted); }
+  .links a:hover { color: var(--navy); }
+  .nav-actions { display: flex; gap: 10px; align-items: center; }
+  .lang { padding: 8px 16px; font-size: .9rem; }
+
+  .hero { background: radial-gradient(1200px 500px at 85% -10%, #1d4c7a 0%, transparent 60%), var(--navy); color: #fff; }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding-top: 72px; padding-bottom: 88px; }
+  .eyebrow { display: inline-block; background: rgba(232,121,12,.2); color: #ffb775; padding: 5px 14px; border-radius: 999px; font-size: .85rem; font-weight: 700; margin-bottom: 16px; }
+  .hero h1 { margin: 0 0 14px; font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.25; font-weight: 800; }
+  .hero p { margin: 0 0 28px; color: #cdd9e6; font-size: 1.1rem; max-width: 520px; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-art { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .tile { border-radius: var(--radius); padding: 22px 18px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); text-align: center; backdrop-filter: blur(4px); }
+  .tile .em { font-size: 2.6rem; display: block; margin-bottom: 4px; }
+  .tile span { font-size: .92rem; color: #dbe6f1; font-weight: 600; }
+  .tile:nth-child(2), .tile:nth-child(3) { transform: translateY(18px); }
+
+  .trust { margin-top: -34px; position: relative; z-index: 2; }
+  .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .trust-item { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; display: flex; gap: 12px; align-items: center; border: 1px solid var(--line); }
+  .trust-item .ic { font-size: 1.6rem; }
+  .trust-item b { display: block; font-size: .98rem; color: var(--navy); line-height: 1.3; }
+  .trust-item small { color: var(--muted); font-size: .82rem; }
+
+  section { padding: 72px 0 0; }
+  .head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 26px; }
+  .head h2 { margin: 0; font-size: 1.8rem; color: var(--navy); font-weight: 800; }
+  .head p { margin: 4px 0 0; color: var(--muted); }
+
+  .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .product { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+  .p-img { height: 150px; display: grid; place-items: center; font-size: 3.6rem; }
+  .p-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .p-body h3 { margin: 0; font-size: 1.05rem; color: var(--navy); }
+  .p-body .cat { color: var(--muted); font-size: .85rem; }
+  .price { font-weight: 800; font-size: 1.15rem; color: var(--navy); margin-top: 6px; }
+  .price small { font-weight: 600; color: var(--muted); font-size: .8rem; }
+  .p-note { font-size: .78rem; color: var(--muted); margin-top: 18px; }
+  .g1 { background: linear-gradient(135deg, #e8f1fb, #d3e4f7); }
+  .g2 { background: linear-gradient(135deg, #fff1e3, #fddcbc); }
+  .g3 { background: linear-gradient(135deg, #e9f7ef, #cdebd9); }
+  .g4 { background: linear-gradient(135deg, #f3ecfb, #e0d1f3); }
+  .g5 { background: linear-gradient(135deg, #fdeef0, #f8d3d8); }
+  .g6 { background: linear-gradient(135deg, #eaf3f4, #cfe3e6); }
+
+  .support { background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; border-radius: 24px; padding: 44px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 36px; align-items: center; }
+  .support h2 { margin: 0 0 10px; font-size: 1.9rem; font-weight: 800; }
+  .support p { color: #cdd9e6; margin: 0 0 18px; }
+  .support ul { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 8px; }
+  .support li::before { content: "✓"; color: var(--orange); font-weight: 800; margin-inline-end: 10px; }
+  .chat-demo { background: #fff; color: var(--text); border-radius: 18px; padding: 18px; box-shadow: 0 20px 40px rgba(0,0,0,.25); }
+  .chat-demo .cap { font-size: .75rem; color: var(--muted); text-align: center; margin-bottom: 10px; }
+  .bub { padding: 10px 14px; border-radius: 14px; max-width: 85%; margin-bottom: 8px; font-size: .92rem; line-height: 1.5; }
+  .bub.u { background: var(--orange); color: #fff; margin-inline-start: auto; border-end-end-radius: 4px; }
+  .bub.b { background: #edf1f6; border-end-start-radius: 4px; }
+
+  .faq { display: grid; gap: 10px; max-width: 820px; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 4px 18px; }
+  summary { cursor: pointer; font-weight: 700; color: var(--navy); padding: 14px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--orange); font-size: 1.4rem; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details p { margin: 0 0 14px; color: var(--muted); }
+
+  footer { background: var(--navy); color: #cdd9e6; margin-top: 80px; padding: 48px 0 24px; }
+  .f-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 30px; }
+  footer h4 { color: #fff; margin: 0 0 10px; }
+  footer p, footer li { margin: 0 0 6px; font-size: .93rem; }
+  footer ul { list-style: none; padding: 0; margin: 0; }
+  .copy { border-top: 1px solid rgba(255,255,255,.12); margin-top: 28px; padding-top: 16px; font-size: .82rem; text-align: center; color: #9fb2c6; }
+
+  #setup-warning { display: none; background: #fff3cd; color: #7a5a00; padding: 9px 16px; text-align: center; font-size: .9rem; border-bottom: 1px solid #f1d98a; }
+  #setup-warning code { direction: ltr; unicode-bidi: embed; background: #fff; padding: 1px 6px; border-radius: 6px; }
+
+  @media (max-width: 900px) {
+    .hero .wrap, .support, .f-grid { grid-template-columns: 1fr; }
+    .trust-grid { grid-template-columns: 1fr 1fr; }
+    .products { grid-template-columns: 1fr 1fr; }
+    .links { display: none; }
+    .hero-art { display: none; }
+    .support { padding: 28px; }
+  }
+  @media (max-width: 560px) {
+    .products, .trust-grid { grid-template-columns: 1fr; }
+    .nav-actions .btn-primary { display: none; }
+  }
+</style>
+</head>
+<body>
+<div id="setup-warning"></div>
+<div class="announce" data-i18n="announce"></div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="#top" class="logo"><i>N</i><span>Nova<b>Mart</b></span></a>
+    <div class="links">
+      <a href="#shop" data-i18n="nav_shop"></a>
+      <a href="#support" data-i18n="nav_support"></a>
+      <a href="#faq" data-i18n="nav_faq"></a>
+      <a href="#contact" data-i18n="nav_contact"></a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-outline lang" id="langBtn" type="button" aria-label="Change language"></button>
+      <button class="btn btn-primary" type="button" data-open-chat data-i18n="chat_btn"></button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-i18n="eyebrow"></span>
+      <h1 data-i18n="hero_title"></h1>
+      <p data-i18n="hero_sub"></p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#shop" data-i18n="hero_shop"></a>
+        <button class="btn btn-ghost" type="button" data-open-chat data-i18n="hero_chat"></button>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="tile"><span class="em">🎧</span><span data-i18n="t_audio"></span></div>
+      <div class="tile"><span class="em">⌚</span><span data-i18n="t_wear"></span></div>
+      <div class="tile"><span class="em">🍳</span><span data-i18n="t_home"></span></div>
+      <div class="tile"><span class="em">💼</span><span data-i18n="t_acc"></span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap trust">
+  <div class="trust-grid">
+    <div class="trust-item"><span class="ic">🚚</span><div><b data-i18n="tr1_t"></b><small data-i18n="tr1_s"></small></div></div>
+    <div class="trust-item"><span class="ic">💳</span><div><b data-i18n="tr2_t"></b><small data-i18n="tr2_s"></small></div></div>
+    <div class="trust-item"><span class="ic">↩️</span><div><b data-i18n="tr3_t"></b><small data-i18n="tr3_s"></small></div></div>
+    <div class="trust-item"><span class="ic">💬</span><div><b data-i18n="tr4_t"></b><small data-i18n="tr4_s"></small></div></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="shop">
+    <div class="head">
+      <div><h2 data-i18n="shop_title"></h2><p data-i18n="shop_sub"></p></div>
+    </div>
+    <div class="products" id="products"></div>
+    <p class="p-note" data-i18n="p_note"></p>
+  </section>
+
+  <section id="support">
+    <div class="support">
+      <div>
+        <h2 data-i18n="sup_title"></h2>
+        <p data-i18n="sup_sub"></p>
+        <ul>
+          <li data-i18n="sup_1"></li>
+          <li data-i18n="sup_2"></li>
+          <li data-i18n="sup_3"></li>
+          <li data-i18n="sup_4"></li>
+        </ul>
+        <button class="btn btn-primary" type="button" data-open-chat data-i18n="sup_btn"></button>
+      </div>
+      <div class="chat-demo" aria-hidden="true">
+        <div class="cap" data-i18n="demo_cap"></div>
+        <div class="bub u" data-i18n="demo_u"></div>
+        <div class="bub b" data-i18n="demo_b"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="head"><div><h2 data-i18n="faq_title"></h2></div></div>
+    <div class="faq">
+      <details><summary data-i18n="q1"></summary><p data-i18n="a1"></p></details>
+      <details><summary data-i18n="q2"></summary><p data-i18n="a2"></p></details>
+      <details><summary data-i18n="q3"></summary><p data-i18n="a3"></p></details>
+      <details><summary data-i18n="q4"></summary><p data-i18n="a4"></p></details>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <div class="logo" style="color:#fff"><i>N</i><span>Nova<b>Mart</b></span></div>
+        <p style="margin-top:10px" data-i18n="f_about"></p>
+      </div>
+      <div>
+        <h4 data-i18n="f_help"></h4>
+        <ul>
+          <li><a href="#support" data-i18n="nav_support"></a></li>
+          <li><a href="#faq" data-i18n="nav_faq"></a></li>
+          <li><a href="#shop" data-i18n="nav_shop"></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="f_hours_t"></h4>
+        <p data-i18n="f_hours"></p>
+        <p data-i18n="f_ai"></p>
+      </div>
+    </div>
+    <div class="copy" data-i18n="copy"></div>
+  </div>
+</footer>
+
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  // ← حط هنا رابط الـ Production URL بتاع الـ Chat Trigger في n8n
+  const WEBHOOK_URL = 'https://shenouda1230.app.n8n.cloud/webhook/smart-support-chat/chat';
+
+  const T = {
+    ar: {
+      announce: 'شحن مجاني على الطلبات فوق 1,000 جنيه',
+      nav_shop: 'المنتجات', nav_support: 'الدعم', nav_faq: 'أسئلة شائعة', nav_contact: 'تواصل معنا',
+      chat_btn: 'ابدأ محادثة',
+      eyebrow: 'إلكترونيات ومستلزمات منزلية',
+      hero_title: 'اشتري بثقة، وخدمة العملاء معاك في أي وقت',
+      hero_sub: 'منتجات مختارة بأسعار واضحة، وشحن لكل المحافظات، ومساعد ذكي بيتابع طلبك ويساعدك في الاسترجاع.',
+      hero_shop: 'تسوّق الآن', hero_chat: 'كلّم الدعم',
+      t_audio: 'صوتيات', t_wear: 'ساعات ذكية', t_home: 'أجهزة منزلية', t_acc: 'إكسسوارات',
+      tr1_t: 'شحن لكل المحافظات', tr1_s: 'مجاني فوق 1,000 جنيه',
+      tr2_t: 'طرق دفع متعددة', tr2_s: 'كاش، فيزا، فوري، إنستا باي',
+      tr3_t: 'إرجاع خلال 14 يوم', tr3_s: 'بشروط بسيطة',
+      tr4_t: 'دعم سريع', tr4_s: 'شات ذكي + موظف عند الحاجة',
+      shop_title: 'منتجات مختارة', shop_sub: 'أسعار واضحة بالجنيه المصري',
+      p_note: 'المنتجات والأسعار للعرض التوضيحي.',
+      sup_title: 'دعم ذكي بيفهمك ويتابع طلبك',
+      sup_sub: 'اكتب سؤالك بالعربي أو الإنجليزي، والمساعد بيرد من بيانات حقيقية، ولو الموضوع محتاج موظف بنحوّلك له.',
+      sup_1: 'تتبّع حالة الطلب وموعد التسليم',
+      sup_2: 'التحقق من أهلية الاسترجاع وتسجيل الطلب',
+      sup_3: 'إجابات عن الشحن والدفع والإرجاع',
+      sup_4: 'تحويل للموظف في الحالات الخاصة',
+      sup_btn: 'ابدأ المحادثة',
+      demo_cap: 'مثال توضيحي',
+      demo_u: 'فين طلبي ORD-1001؟',
+      demo_b: 'طلبك شُحن وهيوصلك في 15 نوفمبر.',
+      faq_title: 'أسئلة شائعة',
+      q1: 'مدة الشحن كام؟', a1: 'القاهرة والجيزة من 2 إلى 3 أيام، وباقي المحافظات من 4 إلى 6 أيام. الشحن مجاني للطلبات فوق 1,000 جنيه.',
+      q2: 'إيه طرق الدفع المتاحة؟', a2: 'الدفع كاش عند الاستلام، أو Visa/Mastercard، أو فوري، أو إنستا باي.',
+      q3: 'إزاي أرجّع منتج؟', a3: 'الإرجاع خلال 14 يوم من الاستلام، والمنتج يكون غير مستخدم ومعاه الفاتورة. تقدر تبدأ الطلب من الشات.',
+      q4: 'مواعيد الدعم؟', a4: 'من السبت إلى الخميس، من 9 صباحاً حتى 9 مساءً.',
+      f_about: 'متجر إلكتروني للإلكترونيات والمستلزمات المنزلية في مصر.',
+      f_help: 'مساعدة', f_hours_t: 'ساعات الدعم',
+      f_hours: 'السبت – الخميس، 9 ص – 9 م', f_ai: 'المساعد الذكي متاح على الشات.',
+      copy: '© 2026 Nova Mart. جميع الحقوق محفوظة.',
+      warn: 'لسه ما حطيتش رابط الـ webhook. افتح الملف وغيّر WEBHOOK_URL برابط الـ Chat Trigger من n8n.',
+      langBtn: 'English',
+      prod: [
+        ['سماعات لاسلكية', 'صوتيات', '850', '🎧', 'g1'],
+        ['ساعة ذكية', 'ساعات', '1,450', '⌚', 'g2'],
+        ['حقيبة لابتوب', 'إكسسوارات', '600', '💼', 'g3'],
+        ['قلاية هوائية', 'أجهزة منزلية', '3,200', '🍳', 'g4'],
+        ['جراب موبايل', 'إكسسوارات', '150', '📱', 'g5'],
+        ['سماعة بلوتوث', 'صوتيات', '1,100', '🔊', 'g6']
+      ],
+      egp: 'جنيه',
+      chat: {
+        title: 'الدعم الذكي', subtitle: 'بنرد عليك في ثواني', footer: '', getStarted: 'محادثة جديدة',
+        inputPlaceholder: 'اكتب رسالتك هنا...', closeButtonTooltip: 'إغلاق',
+        init: ['أهلاً بيك في Nova Mart! 👋', 'اسألني عن طلبك أو الاسترجاع أو أي سؤال عن المتجر.']
+      }
+    },
+    en: {
+      announce: 'Free shipping on orders over 1,000 EGP',
+      nav_shop: 'Shop', nav_support: 'Support', nav_faq: 'FAQ', nav_contact: 'Contact',
+      chat_btn: 'Start chat',
+      eyebrow: 'Electronics & home essentials',
+      hero_title: 'Shop with confidence. Support is always a message away.',
+      hero_sub: 'Carefully picked products at clear prices, delivery across Egypt, and a smart assistant that tracks your order and helps with returns.',
+      hero_shop: 'Shop now', hero_chat: 'Talk to support',
+      t_audio: 'Audio', t_wear: 'Smart watches', t_home: 'Home appliances', t_acc: 'Accessories',
+      tr1_t: 'Delivery nationwide', tr1_s: 'Free over 1,000 EGP',
+      tr2_t: 'Flexible payment', tr2_s: 'Cash, cards, Fawry, InstaPay',
+      tr3_t: '14-day returns', tr3_s: 'Simple conditions',
+      tr4_t: 'Fast support', tr4_s: 'Smart chat + human agents',
+      shop_title: 'Featured products', shop_sub: 'Clear prices in Egyptian pounds',
+      p_note: 'Products and prices are for demonstration.',
+      sup_title: 'Smart support that understands you',
+      sup_sub: 'Ask in Arabic or English. The assistant answers from real order data, and hands you to a human agent when needed.',
+      sup_1: 'Track your order status and delivery date',
+      sup_2: 'Check refund eligibility and register a request',
+      sup_3: 'Answers about shipping, payment and returns',
+      sup_4: 'Handoff to a human agent for special cases',
+      sup_btn: 'Start the chat',
+      demo_cap: 'Sample conversation',
+      demo_u: 'Where is my order ORD-1001?',
+      demo_b: 'Your order has shipped and will arrive on 15 November.',
+      faq_title: 'Frequently asked questions',
+      q1: 'How long does delivery take?', a1: 'Cairo & Giza take 2–3 days, other governorates 4–6 days. Shipping is free on orders over 1,000 EGP.',
+      q2: 'Which payment methods do you accept?', a2: 'Cash on delivery, Visa/Mastercard, Fawry and InstaPay.',
+      q3: 'How do I return an item?', a3: 'Returns are accepted within 14 days of delivery, if the item is unused and comes with the invoice. You can start a request in the chat.',
+      q4: 'What are your support hours?', a4: 'Saturday to Thursday, 9 AM to 9 PM.',
+      f_about: 'An online store for electronics and home essentials in Egypt.',
+      f_help: 'Help', f_hours_t: 'Support hours',
+      f_hours: 'Saturday – Thursday, 9 AM – 9 PM', f_ai: 'The smart assistant is available in chat.',
+      copy: '© 2026 Nova Mart. All rights reserved.',
+      warn: 'The webhook URL is not set yet. Open the file and replace WEBHOOK_URL with your n8n Chat Trigger URL.',
+      langBtn: 'العربية',
+      prod: [
+        ['Wireless Earbuds', 'Audio', '850', '🎧', 'g1'],
+        ['Smart Watch', 'Wearables', '1,450', '⌚', 'g2'],
+        ['Laptop Bag', 'Accessories', '600', '💼', 'g3'],
+        ['Air Fryer', 'Home appliances', '3,200', '🍳', 'g4'],
+        ['Phone Case', 'Accessories', '150', '📱', 'g5'],
+        ['Bluetooth Speaker', 'Audio', '1,100', '🔊', 'g6']
+      ],
+      egp: 'EGP',
+      chat: {
+        title: 'Smart Support', subtitle: 'We reply in seconds', footer: '', getStarted: 'New conversation',
+        inputPlaceholder: 'Type your message...', closeButtonTooltip: 'Close',
+        init: ['Welcome to Nova Mart! 👋', 'Ask me about your order, returns, or anything about the store.']
+      }
+    }
+  };
+
+  let lang = 'ar';
+  try {
+    const saved = localStorage.getItem('lang');
+    if (saved === 'ar' || saved === 'en') lang = saved;
+    else if ((navigator.language || '').toLowerCase().startsWith('en')) lang = 'en';
+  } catch (e) {}
+
+  let chatApp = null;
+  function mountChat() {
+    const c = T[lang].chat;
+    try { if (chatApp) chatApp.unmount(); } catch (e) {}
+    document.querySelectorAll('#n8n-chat').forEach(n => n.innerHTML = '');
+    chatApp = createChat({
+      webhookUrl: WEBHOOK_URL,
+      mode: 'window',
+      showWelcomeScreen: false,
+      loadPreviousSession: true,
+      chatInputKey: 'chatInput',
+      chatSessionKey: 'sessionId',
+      defaultLanguage: 'en',
+      initialMessages: c.init,
+      i18n: { en: { title: c.title, subtitle: c.subtitle, footer: c.footer, getStarted: c.getStarted, inputPlaceholder: c.inputPlaceholder, closeButtonTooltip: c.closeButtonTooltip } }
+    });
+  }
+
+  function render() {
+    const t = T[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t[el.dataset.i18n] ?? ''; });
+    document.getElementById('langBtn').textContent = t.langBtn;
+    document.getElementById('products').innerHTML = t.prod.map(p => `
+      <article class="product">
+        <div class="p-img ${p[4]}" aria-hidden="true">${p[3]}</div>
+        <div class="p-body">
+          <h3>${p[0]}</h3>
+          <span class="cat">${p[1]}</span>
+          <div class="price">${p[2]} <small>${t.egp}</small></div>
+        </div>
+      </article>`).join('');
+    const warn = document.getElementById('setup-warning');
+    if (WEBHOOK_URL.startsWith('PASTE_')) { warn.textContent = t.warn; warn.style.display = 'block'; }
+    else warn.style.display = 'none';
+  }
+
+  document.getElementById('langBtn').addEventListener('click', () => {
+    lang = lang === 'ar' ? 'en' : 'ar';
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+    render();
+    mountChat();
+  });
+
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-open-chat]')) {
+      const toggle = document.querySelector('.chat-window-toggle');
+      if (toggle) toggle.click();
+    }
+  });
+
+  render();
+  mountChat();
+</script>
+</body>
+</html>
